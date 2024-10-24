@@ -1,0 +1,28 @@
+﻿@using TicariOtomasyon.Models.Entities
+@model List<Departman>
+@{
+    ViewData["Title"] = "SilinenDepartmanlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    int sayac = 1;
+}
+<br />
+<h1>SilinenDepartmanlar</h1>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Sıra No</th>
+        <th>Departman Adı</th>
+        <th>Geri Yükle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@sayac</td>
+            <td>@item.DepartmanAdi</td>
+            <td><a class="btn btn-warning" href="/Departman/DepartmanYukle/@item.Id">Geri Yükle</a></td>
+        </tr>
+        sayac++;
+    }
+</table>

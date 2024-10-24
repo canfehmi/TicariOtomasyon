@@ -1,0 +1,36 @@
+﻿@model TicariOtomasyon.Models.Entities.Urun
+@{
+    ViewData["Title"] = "UrunGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Yeni Ürün Ekleme Sayfası</h1>
+<br />
+<form class="form-group" method="post">
+    @Html.HiddenFor(u=>u.Id)
+    @Html.Label("Ürün Adı:")
+    @Html.TextBoxFor(u => u.UrunAd, new { @class = "form-control" })
+    <br />
+    @Html.Label("Marka:")
+    @Html.TextBoxFor(u => u.Marka, new { @class = "form-control" })
+    <br />
+    @Html.Label("Stok:")
+    @Html.TextBoxFor(u => u.Stok, new { @class = "form-control" })
+    <br />
+    @Html.Label("Alış Fiyat:")
+    @Html.TextBoxFor(u => u.AlisFiyat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Satış Fiyat:")
+    @Html.TextBoxFor(u => u.SatisFiyat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Kategori:")
+    @Html.DropDownListFor(u => u.Kategori.KategoriId, (SelectList)ViewBag.Kategoriler, "Kategori Seç", new { @class = "form-control" })
+    <br />
+    @Html.Label("Ürün Görsel:")
+    @Html.TextBoxFor(u => u.UrunGorsel, new { @class = "form-control" })
+    <br />
+    @Html.Label("Durum:")
+    @Html.TextBoxFor(u => u.Durum, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+</form>
