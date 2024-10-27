@@ -4,13 +4,13 @@
 
 namespace TicariOtomasyon.Migrations
 {
-    public partial class mig5 : Migration
+    public partial class mig2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
                 name: "Durum",
-                table: "Departmans",
+                table: "Carilers",
                 type: "bit",
                 nullable: false,
                 defaultValue: false);
@@ -20,7 +20,7 @@ namespace TicariOtomasyon.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Durum",
-                table: "Departmans");
+                table: "Carilers");
         }
     }
 }

@@ -12,8 +12,8 @@ using TicariOtomasyon.Models.Entities;
 namespace TicariOtomasyon.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20241013225127_mig1")]
-    partial class mig1
+    [Migration("20241027232352_mig2")]
+    partial class mig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,12 +80,10 @@ namespace TicariOtomasyon.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
 
-                    b.Property<int>("SatisHareketId")
-                        .HasColumnType("int");
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
 
                     b.HasKey("CariId");
-
-                    b.HasIndex("SatisHareketId");
 
                     b.ToTable("Carilers");
                 });
@@ -102,6 +100,9 @@ namespace TicariOtomasyon.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
+
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -210,18 +211,18 @@ namespace TicariOtomasyon.Migrations
 
             modelBuilder.Entity("TicariOtomasyon.Models.Entities.Kategori", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("KategoriId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KategoriId"), 1L, 1);
 
                     b.Property<string>("KategoriAd")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
 
-                    b.HasKey("Id");
+                    b.HasKey("KategoriId");
 
                     b.ToTable("Kategoris");
                 });
@@ -252,14 +253,9 @@ namespace TicariOtomasyon.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
 
-                    b.Property<int>("SatisHareketId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmanId");
-
-                    b.HasIndex("SatisHareketId");
 
                     b.ToTable("Personels");
                 });
@@ -275,8 +271,14 @@ namespace TicariOtomasyon.Migrations
                     b.Property<int>("Adet")
                         .HasColumnType("int");
 
+                    b.Property<int>("CarilerCariId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Fiyat")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PersonelId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
@@ -284,7 +286,16 @@ namespace TicariOtomasyon.Migrations
                     b.Property<decimal>("ToplamTutar")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("UrunId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CarilerCariId");
+
+                    b.HasIndex("PersonelId");
+
+                    b.HasIndex("UrunId");
 
                     b.ToTable("SatisHarekets");
                 });
@@ -314,9 +325,6 @@ namespace TicariOtomasyon.Migrations
                     b.Property<decimal>("SatisFiyat")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SatisHareketId")
-                        .HasColumnType("int");
-
                     b.Property<short>("Stok")
                         .HasColumnType("smallint");
 
@@ -334,20 +342,7 @@ namespace TicariOtomasyon.Migrations
 
                     b.HasIndex("KategoriId");
 
-                    b.HasIndex("SatisHareketId");
-
                     b.ToTable("Uruns");
-                });
-
-            modelBuilder.Entity("TicariOtomasyon.Models.Entities.Cariler", b =>
-                {
-                    b.HasOne("TicariOtomasyon.Models.Entities.SatisHareket", "SatisHareket")
-                        .WithMany("Carilers")
-                        .HasForeignKey("SatisHareketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("SatisHareket");
                 });
 
             modelBuilder.Entity("TicariOtomasyon.Models.Entities.FaturaKalem", b =>
@@ -369,15 +364,34 @@ namespace TicariOtomasyon.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicariOtomasyon.Models.Entities.SatisHareket", "SatisHareket")
-                        .WithMany("Personels")
-                        .HasForeignKey("SatisHareketId")
+                    b.Navigation("Departman");
+                });
+
+            modelBuilder.Entity("TicariOtomasyon.Models.Entities.SatisHareket", b =>
+                {
+                    b.HasOne("TicariOtomasyon.Models.Entities.Cariler", "Cariler")
+                        .WithMany("SatisHarekets")
+                        .HasForeignKey("CarilerCariId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Departman");
+                    b.HasOne("TicariOtomasyon.Models.Entities.Personel", "Personel")
+                        .WithMany("SatisHarekets")
+                        .HasForeignKey("PersonelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SatisHareket");
+                    b.HasOne("TicariOtomasyon.Models.Entities.Urun", "Urun")
+                        .WithMany("SatisHarekets")
+                        .HasForeignKey("UrunId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cariler");
+
+                    b.Navigation("Personel");
+
+                    b.Navigation("Urun");
                 });
 
             modelBuilder.Entity("TicariOtomasyon.Models.Entities.Urun", b =>
@@ -388,15 +402,12 @@ namespace TicariOtomasyon.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TicariOtomasyon.Models.Entities.SatisHareket", "SatisHareket")
-                        .WithMany("Uruns")
-                        .HasForeignKey("SatisHareketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Kategori");
+                });
 
-                    b.Navigation("SatisHareket");
+            modelBuilder.Entity("TicariOtomasyon.Models.Entities.Cariler", b =>
+                {
+                    b.Navigation("SatisHarekets");
                 });
 
             modelBuilder.Entity("TicariOtomasyon.Models.Entities.Departman", b =>
@@ -414,13 +425,14 @@ namespace TicariOtomasyon.Migrations
                     b.Navigation("Uruns");
                 });
 
-            modelBuilder.Entity("TicariOtomasyon.Models.Entities.SatisHareket", b =>
+            modelBuilder.Entity("TicariOtomasyon.Models.Entities.Personel", b =>
                 {
-                    b.Navigation("Carilers");
+                    b.Navigation("SatisHarekets");
+                });
 
-                    b.Navigation("Personels");
-
-                    b.Navigation("Uruns");
+            modelBuilder.Entity("TicariOtomasyon.Models.Entities.Urun", b =>
+                {
+                    b.Navigation("SatisHarekets");
                 });
 #pragma warning restore 612, 618
         }

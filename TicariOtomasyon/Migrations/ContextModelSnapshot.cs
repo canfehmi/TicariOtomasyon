@@ -78,6 +78,9 @@ namespace TicariOtomasyon.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
 
+                    b.Property<bool>("Durum")
+                        .HasColumnType("bit");
+
                     b.HasKey("CariId");
 
                     b.ToTable("Carilers");
@@ -211,9 +214,6 @@ namespace TicariOtomasyon.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KategoriId"), 1L, 1);
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("KategoriAd")
                         .IsRequired()

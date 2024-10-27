@@ -12,8 +12,8 @@ using TicariOtomasyon.Models.Entities;
 namespace TicariOtomasyon.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20241024003022_mig6")]
-    partial class mig6
+    [Migration("20241027213934_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -213,9 +213,6 @@ namespace TicariOtomasyon.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KategoriId"), 1L, 1);
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("KategoriAd")
                         .IsRequired()

@@ -4,6 +4,9 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@{
+    int sayac = 1;
+}
 <br />
 <h1>Ürünler</h1>
 <br />
@@ -26,7 +29,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.Id</td>
+            <td>@sayac</td>
             <td>@item.UrunAd</td>
             <td>@item.Marka</td>
             <td>@item.Stok</td>
@@ -37,5 +40,6 @@
             <td><a class="btn btn-danger" href="/Urun/UrunSil/@item.Id">Sil</a></td>
             <td><a class="btn btn-success" href="/Urun/UrunGetir/@item.Id">Güncelle</a></td>
         </tr>
+        sayac++;
     }
 </table>

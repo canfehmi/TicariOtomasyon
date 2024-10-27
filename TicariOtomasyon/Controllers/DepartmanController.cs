@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TicariOtomasyon.Models.Entities;
 
 namespace TicariOtomasyon.Controllers
@@ -49,6 +50,38 @@ namespace TicariOtomasyon.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+        public IActionResult DepartmanGetir(int id)
+        {
+            var value = _context.Departmans.Find(id);
+            return View("DepartmanGetir", value);
+        }
+        public IActionResult DepartmanGuncelle(Departman d)
+        {
+            var value = _context.Departmans.Find(d.Id);
+            value.DepartmanAdi = d.DepartmanAdi;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult DepartmanDetay(int id)
+        {
+            var dep = _context.Departmans.Find(id);
+            if (dep != null)
+            {
+                var values = _context.Personels.Include(u => u.Departman).Where(u=>u.Departman.Id==dep.Id).ToList();
+                var dpt = _context.Departmans.Where(u => u.Id == id).Select(u => u.DepartmanAdi).FirstOrDefault();
+                ViewBag.dpt = dpt;
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+        public IActionResult DepartmanPersonelSatis(int id)
+        {
+            var values = _context.SatisHarekets.Where(u=> u.Id == id).Include(u=> u.Urun).Include(u=>u.Cariler).ToList();
+            var personel = _context.Personels.Where(u=>u.Id==id).Select(u=>u.PersonelAd + " " + u.PersonelSoyad).FirstOrDefault();
+            ViewBag.id = id;
+            ViewBag.personel = personel;
+            return View(values);
         }
     }
 }

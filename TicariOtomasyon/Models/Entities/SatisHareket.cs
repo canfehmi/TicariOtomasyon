@@ -6,9 +6,9 @@ namespace TicariOtomasyon.Models.Entities
 	{
 		[Key]
 		public int Id { get; set; }
-        public Urun Urun { get; set; }
-        public Cariler Cariler { get; set; }
-        public Personel Personel { get; set; }
+        public virtual Urun Urun { get; set; }
+        public virtual Cariler Cariler { get; set; }
+        public virtual Personel Personel { get; set; }
         public DateTime Tarih { get; set; }
         public int Adet { get; set; }
         public decimal Fiyat { get; set; }

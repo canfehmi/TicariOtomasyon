@@ -1,0 +1,44 @@
+﻿@using TicariOtomasyon.Models.Entities
+@model List<Cariler>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Cariler</h1>
+<br />
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a class="btn btn-primary" href="/Cari/CariEkle/">Yeni Cari Ekle</a>
+    </div>
+    <div class="col-4 flex-row-reverse d-flex">
+        <a class="btn btn-success" href="/Cari/SilinenCariler/">Silinen Cariler</a>
+    </div>
+</div>
+<br />
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>Cari ID</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Şehir</th>
+        <th>Mail</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.CariId</td>
+            <td>@item.CariAd</td>
+            <td>@item.CariSoyad</td>
+            <td>@item.CariSehir</td>
+            <td>@item.CariMail</td>
+            <td><a href="/Cari/CariSil/@item.CariId" class="btn btn-danger">Sil</a></td>
+            <td><a href="#" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="#" class="btn btn-default" style="background-color:lightcoral; color:white">Satış Geçmişi</a></td>
+        </tr>
+    }
+</table>

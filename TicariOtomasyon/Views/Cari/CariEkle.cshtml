@@ -1,0 +1,25 @@
+﻿@model TicariOtomasyon.Models.Entities.Cariler
+@{
+    ViewData["Title"] = "CariEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1>Yeni Cari Ekle</h1>
+<br />
+
+<form class="form-group" method="post">
+    @Html.Label("Cari Adı:")
+    @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control" })
+    <br />
+    @Html.Label("Cari Soyadı:")
+    @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
+    <br />
+    @Html.Label("Cari Şehir:")
+    @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
+    <br />
+    @Html.Label("Cari Mail:")
+    @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Ekle</button>
+</form>
