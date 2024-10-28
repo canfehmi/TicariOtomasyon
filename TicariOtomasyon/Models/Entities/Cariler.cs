@@ -9,16 +9,20 @@ namespace TicariOtomasyon.Models.Entities
         public int CariId { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(30)]
+		[Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
 		public string CariAd { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(30)]
-		public string CariSoyad { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string CariSoyad { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(13)]
-		public string CariSehir { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string CariSehir { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(50)]
-		public string CariMail { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string CariMail { get; set; }
 		public bool Durum { get; set; }
 		public ICollection<SatisHareket> SatisHarekets { get; set; }
 

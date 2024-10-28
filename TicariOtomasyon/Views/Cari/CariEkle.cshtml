@@ -11,15 +11,19 @@
 <form class="form-group" method="post">
     @Html.Label("Cari Adı:")
     @Html.TextBoxFor(x => x.CariAd, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color:red" })
     <br />
     @Html.Label("Cari Soyadı:")
     @Html.TextBoxFor(x => x.CariSoyad, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:red" })
     <br />
     @Html.Label("Cari Şehir:")
     @Html.TextBoxFor(x => x.CariSehir, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariSehir, "", new { @style = "color:red" })
     <br />
     @Html.Label("Cari Mail:")
     @Html.TextBoxFor(x => x.CariMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CariMail, "", new { @style = "color:red" })
     <br />
     <button class="btn btn-primary">Ekle</button>
 </form>

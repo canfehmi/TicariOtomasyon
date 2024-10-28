@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TicariOtomasyon.Models.Entities;
 
 namespace TicariOtomasyon.Controllers
@@ -19,6 +20,10 @@ namespace TicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult CariEkle(Cariler c)
         {
+            if (!ModelState.IsValid)
+            {
+                return View("CariEkle");
+            }
             c.Durum = true;
             _context.Carilers.Add(c);
             _context.SaveChanges();
@@ -50,6 +55,32 @@ namespace TicariOtomasyon.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
+        }
+        public IActionResult CariGetir(int id)
+        {
+            var value = _context.Carilers.Find(id);
+            return View("CariGetir", value);
+        }
+        public IActionResult CariGuncelle(Cariler c)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CariGetir");
+            }
+            var value = _context.Carilers.Where(x=>x.CariId==c.CariId).FirstOrDefault();
+            value.CariAd = c.CariAd;
+            value.CariSoyad = c.CariSoyad;
+            value.CariSehir = c.CariSehir;
+            value.CariMail = c.CariMail;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult MusteriSatis(int id)
+        {
+            var values = _context.SatisHarekets.Where(x=> x.Cariler.CariId==id).Include(u=>u.Urun).Include(u=>u.Personel).ToList();
+            var cari = _context.Carilers.Where(x => x.CariId == id).Select(u => u.CariAd + " " + u.CariSoyad).FirstOrDefault();
+            ViewBag.cari = cari;
+            return View(values);
         }
     }
 }
