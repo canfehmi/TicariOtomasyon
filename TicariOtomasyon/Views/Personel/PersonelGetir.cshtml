@@ -1,0 +1,34 @@
+﻿@model TicariOtomasyon.Models.Entities.Personel
+@{
+    ViewData["Title"] = "PersonelGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Personel Güncelleme Sayfası</h1>
+<br />
+<a class="btn btn-info" href="/Personel/Index/">Personellere Geri Dön</a>
+<br />
+<br />
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(x => x.Id)
+        @Html.Label("Personel Ad:")
+        @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelAd, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Personel Soyad:")
+        @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelSoyad, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Personel Görsel:")
+        @Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.PersonelGorsel, "", new { @style = "color:red" })
+        <br />
+        @Html.Label("Personel Departman:")
+        @Html.DropDownListFor(x=>x.Departman.Id, (SelectList)ViewBag.depts, "Departman Seçiniz.", new {@class = "form-control"})
+        @Html.ValidationMessageFor(x => x.Departman, "", new { @style = "color:red" })
+        <br />
+        <button class="btn btn-success">Kaydet</button>
+    </div>
+}

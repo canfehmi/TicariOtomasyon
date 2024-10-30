@@ -1,0 +1,30 @@
+﻿@model TicariOtomasyon.Models.Entities.SatisHareket
+@{
+    ViewData["Title"] = "SatisYap";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1>Yeni Ürün Ekleme Sayfası</h1>
+<br />
+<form class="form-group" method="post">
+    @Html.Label("Ürün Adı:")
+    @Html.DropDownListFor(x => x.Urun.Id, (SelectList)ViewBag.urun, "Ürün Seçiniz.", new { @class = "form-control" })
+    <br />
+    @Html.Label("Müşteri:")
+    @Html.DropDownListFor(x => x.Cariler.CariId, (SelectList)ViewBag.cari, "Cari Seçiniz.", new { @class = "form-control" })
+    <br />
+    @Html.Label("Satış Personeli:")
+    @Html.DropDownListFor(x => x.Personel.Id, (SelectList)ViewBag.personel, "Personel Seçiniz.", new { @class = "form-control" })
+    <br />
+    @Html.Label("Adet:")
+    @Html.TextBoxFor(u => u.Adet, new { @class = "form-control" })
+    <br />
+    @Html.Label("Fiyat:")
+    @Html.TextBoxFor(u => u.Fiyat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Toplam Tutar:")
+    @Html.TextBoxFor(u => u.ToplamTutar, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-info">Satış Yap</button>
+</form>

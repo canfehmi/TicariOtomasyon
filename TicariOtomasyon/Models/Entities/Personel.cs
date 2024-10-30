@@ -9,14 +9,18 @@ namespace TicariOtomasyon.Models.Entities
         public int Id { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(30)]
-		public string PersonelAd { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string PersonelAd { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(30)]
-		public string PersonelSoyad { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string PersonelSoyad { get; set; }
 		[Column(TypeName = "Varchar")]
 		[StringLength(250)]
-		public string PersonelGorsel { get; set; }
+        [Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
+        public string PersonelGorsel { get; set; }
 		public ICollection<SatisHareket> SatisHarekets { get; set; }
+		[Required(ErrorMessage = "Bu Alanı Boş Geçemezsiniz!")]
 		public virtual Departman Departman { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model TicariOtomasyon.Models.Entities.Personel
+@{
+    ViewData["Title"] = "PersonelEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Personel Ekle</h1>
+<br />
+
+<form class="form-group" method="post">
+    @Html.Label("Personel Adı:")
+    @Html.TextBoxFor(x => x.PersonelAd, new { @class = "form-control" })
+    <br />
+    @Html.Label("Personel Soyadı:")
+    @Html.TextBoxFor(x => x.PersonelSoyad, new { @class = "form-control" })
+    <br />
+    @Html.Label("Personel Görsel:")
+    @Html.TextBoxFor(x => x.PersonelGorsel, new { @class = "form-control" })
+    <br />
+    @Html.Label("Personel Departman:")
+    @Html.DropDownListFor(x=>x.Departman.Id, (SelectList)ViewBag.depts, "Departman Seçiniz.", new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Ekle</button>
+</form>

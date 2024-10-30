@@ -25,6 +25,7 @@ namespace TicariOtomasyon.Controllers
             if (kategori != null)
             {
                 u.Kategori = kategori;
+                u.Durum = true;
                 _context.Uruns.Add(u);
                 _context.SaveChanges();
             }

@@ -1,0 +1,48 @@
+﻿@using TicariOtomasyon.Models.Entities
+@model List<SatisHareket>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h1>Satışlar</h1>
+<br />
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a class="btn btn-primary" href="/Satis/SatisYap/">Yeni Satış Yap</a>
+    </div>
+    <div class="col-4 flex-row-reverse d-flex">
+        <a class="btn btn-success" href="/Cari/SilinenCariler/">Silinen Cariler</a>
+    </div>
+</div>
+<br />
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Ürün Adı</th>
+        <th>Müşteri Adı</th>
+        <th>Satış Personeli</th>
+        <th>Adet</th>
+        <th>Fiyat</th>
+        <th>Toplam Tutar</th>
+        <th>Tarih</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Urun.UrunAd</td>
+            <td>@item.Cariler.CariAd @item.Cariler.CariSoyad</td>
+            <td>@item.Personel.PersonelAd @item.Personel.PersonelSoyad</td>
+            <td>@item.Adet</td>
+            <td>@item.Fiyat</td>
+            <td>@item.ToplamTutar</td>
+            <td>@item.Tarih</td>
+            <td><a href="#" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="#" class="btn btn-success">Detay</a></td>
+        </tr>
+    }
+</table>

@@ -28,6 +28,16 @@ namespace TicariOtomasyon.Controllers
             }
             return View();
         }
+        public IActionResult KaliciSil(int id)
+        {
+            var imha = _context.Departmans.Find(id);
+            if (imha != null)
+            {
+                _context.Remove(imha);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public IActionResult DepartmanEkle()
         {

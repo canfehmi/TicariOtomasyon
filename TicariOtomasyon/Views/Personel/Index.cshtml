@@ -1,0 +1,47 @@
+﻿@using TicariOtomasyon.Models.Entities
+@model List<Personel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@{
+    int sayac = 1;
+}
+<br />
+<h2>Personeller</h2>
+<br />
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a class="btn btn-primary" href="/Personel/PersonelEkle/">Yeni Personel Ekle</a>
+    </div>
+    <div class="col-4 flex-row-reverse d-flex">
+        <a class="btn btn-success" href="/Personel/SilinenPersoneller/">Silinen Personeller</a>
+    </div>
+</div>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Sıra No</th>
+        <th>Personel Adı</th>
+        <th>Personel Soyadı</th>
+        <th>Görsel</th>
+        <th>Departman</th>
+        <th>Güncelle</th>
+        <th>Satışlar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@sayac</td>
+            <td>@item.PersonelAd</td>
+            <td>@item.PersonelSoyad</td>
+            <td>@item.PersonelGorsel</td>
+            <td>@item.Departman.DepartmanAdi</td>
+            <td><a class="btn btn-success" href="/Personel/PersonelGetir/@item.Id">Güncelle</a></td>
+            <td><a class="btn" style="background: lightcoral; color: white" href="/Personel/PersonelSatis/@item.Id">Detay</a></td>
+        </tr>
+        sayac++;
+    }
+</table>
