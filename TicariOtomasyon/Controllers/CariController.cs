@@ -20,7 +20,7 @@ namespace TicariOtomasyon.Controllers
         [HttpPost]
         public IActionResult CariEkle(Cariler c)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return View("CariEkle");
             }
@@ -44,6 +44,13 @@ namespace TicariOtomasyon.Controllers
         {
             var values = _context.Carilers.Where(u=>u.Durum==false).ToList();
             return View(values);
+        }
+        public IActionResult KaliciSil(int id)
+        {
+            var value = _context.Carilers.Find(id);
+            _context.Carilers.Remove(value);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
         public IActionResult CariYukle(int id)
         {

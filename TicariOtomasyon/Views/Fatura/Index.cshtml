@@ -1,0 +1,53 @@
+﻿@using TicariOtomasyon.Models.Entities
+@model List<Faturalar>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@{
+    int sayac = 1;
+}
+<br />
+<h2>Faturalar</h2>
+<br />
+<div class="row justify-content-between">
+    <div class="col-4">
+        <a class="btn btn-primary" href="/Fatura/FaturaEkle/">Yeni Fatura Girişi</a>
+    </div>
+</div>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Seri No</th>
+        <th>Sıra No</th>
+        <th>Vergi Dairesi</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th>Teslim Eden</th>
+        <th>Teslim Alan</th>
+        <th>Toplam Tutar</th>
+        <th>Güncelle</th>
+        <th>Detaylar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@sayac</td>
+            <td>@item.FaturaSeriNo</td>
+            <td>@item.FaturaSıraNo</td>
+            <td>@item.VergiDairesi</td>
+            <td>@item.FaturaTarih</td>
+            <td>@item.Saat</td>
+            <td>@item.TeslimEden</td>
+            <td>@item.TeslimAlan</td>
+            <td>@item.Toplam</td>
+            <td><a class="btn btn-success" href="/Fatura/FaturaGetir/@item.Id">Güncelle</a></td>
+            <td><a class="btn" style="background: lightcoral; color: white" href="/Fatura/FaturaDetay/@item.Id">Detay</a></td>
+        </tr>
+        sayac++;
+    }
+</table>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicariOtomasyon.Models.Entities;
 
@@ -11,9 +12,10 @@ using TicariOtomasyon.Models.Entities;
 namespace TicariOtomasyon.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241104211336_mig5")]
+    partial class mig5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,10 +162,8 @@ namespace TicariOtomasyon.Migrations
                     b.Property<DateTime>("FaturaTarih")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Saat")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("Char(5)");
+                    b.Property<DateTime>("Saat")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("TeslimAlan")
                         .IsRequired()
@@ -174,9 +174,6 @@ namespace TicariOtomasyon.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
-
-                    b.Property<decimal>("Toplam")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("VergiDairesi")
                         .IsRequired()

@@ -19,7 +19,7 @@
         <th>Şehir</th>
         <th>Mail</th>
         <th>Cariyi Geri Yükle</th>
-        <th>Detaylar</th>
+        <th>Kalıcı Olarak Sil</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -30,7 +30,7 @@
             <td>@item.CariSehir</td>
             <td>@item.CariMail</td>
             <td><a href="/Cari/CariYukle/@item.CariId" class="btn btn-success">Cariyi Geri Yükle</a></td>
-            <td><a href="#" class="btn btn-default" style="background-color:lightcoral; color:white">Satış Geçmişi</a></td>
+            <td><a href="/Cari/KaliciSil/@item.CariId" class="btn btn-danger">Kalıcı Olarak Sil</a></td>
         </tr>
     }
 </table>

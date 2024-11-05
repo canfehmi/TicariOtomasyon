@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicariOtomasyon.Models.Entities;
 
@@ -11,9 +12,10 @@ using TicariOtomasyon.Models.Entities;
 namespace TicariOtomasyon.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241104210845_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,9 +176,6 @@ namespace TicariOtomasyon.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("Varchar(30)");
-
-                    b.Property<decimal>("Toplam")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("VergiDairesi")
                         .IsRequired()

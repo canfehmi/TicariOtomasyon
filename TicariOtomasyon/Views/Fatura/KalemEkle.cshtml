@@ -1,0 +1,31 @@
+﻿@model TicariOtomasyon.Models.Entities.FaturaKalem
+@{
+    ViewData["Title"] = "KalemEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1>Fatura Girişi</h1>
+<br />
+<a href="/Fatura/Index/" class="btn btn-success">Geri Dön</a>
+<br />
+<br />
+
+<form class="form-group" method="post">
+    @Html.Label("Açıklama:")
+    @Html.TextBoxFor(x => x.Aciklama, new { @class = "form-control" })
+    <br />
+    @Html.Label("Miktar:")
+    @Html.TextBoxFor(x => x.Miktar, new { @class = "form-control" })
+    <br />
+    @Html.Label("Birim Fiyat:")
+    @Html.TextBoxFor(x => x.BirimFiyat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Toplam Tutar:")
+    @Html.TextBoxFor(x => x.Tutar, new { @class = "form-control" })
+    <br />
+    @Html.Label("Fatura ID:")
+    @Html.TextBoxFor(x => x.Faturalar.Id, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Ekle</button>
+</form>

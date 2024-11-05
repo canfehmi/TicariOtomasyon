@@ -1,0 +1,35 @@
+﻿@model TicariOtomasyon.Models.Entities.Faturalar
+@{
+    ViewData["Title"] = "FaturaGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h1>Fatura Düzenleme</h1>
+<br />
+<a href="/Fatura/Index/" class="btn btn-success">Vazgeç</a>
+
+<form class="form-group" method="post">
+    @Html.Label("Fatura Seri No:")
+    @Html.TextBoxFor(x => x.FaturaSeriNo, new { @class = "form-control" })
+    <br />
+    @Html.Label("Fatura Sıra No:")
+    @Html.TextBoxFor(x => x.FaturaSıraNo, new { @class = "form-control" })
+    <br />
+    @Html.Label("Tarih:")
+    @Html.TextBoxFor(x => x.FaturaTarih, new { @class = "form-control" })
+    <br />
+    @Html.Label("Saat:")
+    @Html.TextBoxFor(x => x.Saat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Teslim Eden:")
+    @Html.TextBoxFor(x => x.TeslimEden, new { @class = "form-control" })
+    <br />
+    @Html.Label("Teslim Alan:")
+    @Html.TextBoxFor(x => x.TeslimAlan, new { @class = "form-control" })
+    <br />
+    @Html.Label("Vergi Dairesi:")
+    @Html.TextBoxFor(x => x.VergiDairesi, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Güncelle</button>
+</form>

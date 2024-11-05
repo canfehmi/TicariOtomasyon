@@ -76,5 +76,10 @@ namespace TicariOtomasyon.Controllers
             ViewBag.Kategoriler = new SelectList(_context.Kategoris, "KategoriId", "KategoriAd", urun.Kategori.KategoriId);
             return View(urun);
         }
+        public IActionResult UrunListesi()
+        {
+            var values = _context.Uruns.Include(u=>u.Kategori).ToList();
+            return View(values);
+        }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model TicariOtomasyon.Models.Entities.SatisHareket
+@{
+    ViewData["Title"] = "SatisGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<h1>Satış İşlemi Güncelleme Sayfası</h1>
+<br />
+<form class="form-group" method="post">
+    @Html.HiddenFor(u => u.Id)
+    @Html.Label("Cari:")
+    @Html.DropDownListFor(u=>u.Cariler.CariId, (SelectList)ViewBag.cari, "Cari Seçiniz", new {@class = "form-control"})
+    <br />
+    @Html.Label("Ürün:")
+    @Html.DropDownListFor(u => u.Urun.Id, (SelectList)ViewBag.urun, "Ürünü Seçiniz", new { @class = "form-control" })
+    <br />
+    @Html.Label("Satış Personeli:")
+    @Html.DropDownListFor(u => u.Personel.Id, (SelectList)ViewBag.personel, "Personel Seçiniz", new { @class = "form-control" })
+    <br />
+    @Html.Label("Adet:")
+    @Html.TextBoxFor(u => u.Adet, new { @class = "form-control" })
+    <br />
+    @Html.Label("Satış Fiyat:")
+    @Html.TextBoxFor(u => u.Fiyat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Toplam Tutar:")
+    @Html.TextBoxFor(u => u.ToplamTutar, new { @class = "form-control" })
+    <br />
+    @Html.Label("Tarih:")
+    @Html.TextBoxFor(u => u.Tarih, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-warning">Güncelle</button>
+</form>
