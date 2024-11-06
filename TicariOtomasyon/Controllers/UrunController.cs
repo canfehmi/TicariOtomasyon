@@ -38,6 +38,31 @@ namespace TicariOtomasyon.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult SilinenUrunler()
+        {
+            var values = _context.Uruns.Where(u=>u.Durum==false).Include(u=>u.Kategori).ToList();
+            return View(values);
+        }
+        public IActionResult GeriYukle(int id)
+        {
+            var value = _context.Uruns.FirstOrDefault(u=>u.Id==id);
+            if (value != null)
+            {
+                value.Durum = true;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+        public IActionResult KaliciSil(int id)
+        {
+            var value = _context.Uruns.FirstOrDefault(u=> u.Id==id);
+            if(value!=null)
+            {
+                _context.Uruns.Remove(value);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public IActionResult UrunGetir(int id)
         {

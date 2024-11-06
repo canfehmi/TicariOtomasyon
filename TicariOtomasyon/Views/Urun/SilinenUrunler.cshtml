@@ -1,23 +1,17 @@
 ﻿@using TicariOtomasyon.Models.Entities
 @model List<Urun>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SilinenUrunler";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 @{
     int sayac = 1;
 }
 <br />
-<h1>Ürünler</h1>
+<h1>Silinen Ürünler</h1>
 <br />
-<div class="row justify-content-between">
-    <div class="col-4">
-        <a class="btn btn-primary" href="/Urun/UrunEkle/">Yeni Ürün Ekle</a>
-    </div>
-    <div class="col-4 flex-row-reverse d-flex">
-        <a class="btn btn-success" href="/Urun/SilinenUrunler/">Silinen Ürünler</a>
-    </div>
-</div>
+<a class="btn btn-primary" href="/Urun/Index/">Geri Dön</a>
 <br />
 <br />
 <table class="table table-bordered">
@@ -30,8 +24,8 @@
         <th>SATIŞ FİYATI</th>
         <th>KATEGORİ</th>
         <th>GÖRSEL</th>
-        <th>SİL</th>
-        <th>GÜNCELLE</th>
+        <th>KALICI OLARAK SİL</th>
+        <th>ÜRÜNÜ GERİ YÜKLE</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -44,8 +38,8 @@
             <td>@item.SatisFiyat</td>
             <td>@(item.Kategori != null ? item.Kategori.KategoriAd : "Kategori Yok")</td>
             <td>@item.UrunGorsel</td>
-            <td><a class="btn btn-danger" href="/Urun/UrunSil/@item.Id">Sil</a></td>
-            <td><a class="btn btn-success" href="/Urun/UrunGetir/@item.Id">Güncelle</a></td>
+            <td><a class="btn btn-danger" href="/Urun/KaliciSil/@item.Id">Kalıcı Olarak Sil</a></td>
+            <td><a class="btn btn-success" href="/Urun/GeriYukle/@item.Id">Ürünü Geri Yükle</a></td>
         </tr>
         sayac++;
     }
