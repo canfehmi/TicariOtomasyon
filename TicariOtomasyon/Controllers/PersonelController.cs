@@ -57,5 +57,9 @@ namespace TicariOtomasyon.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult PersonelListe()
+        {
+            return View();
+        }
     }
 }

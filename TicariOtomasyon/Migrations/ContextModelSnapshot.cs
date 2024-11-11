@@ -107,6 +107,29 @@ namespace TicariOtomasyon.Migrations
                     b.ToTable("Departmans");
                 });
 
+            modelBuilder.Entity("TicariOtomasyon.Models.Entities.Detay", b =>
+                {
+                    b.Property<int>("DetayId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetayId"), 1L, 1);
+
+                    b.Property<string>("UrunAdi")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("Varchar(30)");
+
+                    b.Property<string>("UrunBilgi")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("Varchar(2000)");
+
+                    b.HasKey("DetayId");
+
+                    b.ToTable("Detays");
+                });
+
             modelBuilder.Entity("TicariOtomasyon.Models.Entities.FaturaKalem", b =>
                 {
                     b.Property<int>("Id")

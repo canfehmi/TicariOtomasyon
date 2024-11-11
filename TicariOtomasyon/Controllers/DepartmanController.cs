@@ -87,9 +87,10 @@ namespace TicariOtomasyon.Controllers
         }
         public IActionResult DepartmanPersonelSatis(int id)
         {
-            var values = _context.SatisHarekets.Where(u=> u.Id == id).Include(u=> u.Urun).Include(u=>u.Cariler).ToList();
+            var values = _context.SatisHarekets.Where(u=> u.Personel.Id == id).Include(u=> u.Urun).Include(u=>u.Cariler).ToList();
             var personel = _context.Personels.Where(u=>u.Id==id).Select(u=>u.PersonelAd + " " + u.PersonelSoyad).FirstOrDefault();
-            ViewBag.id = id;
+            var deptid = _context.Personels.Where(u=>u.Id == id).Select(u=>u.Departman.Id).FirstOrDefault();
+            ViewBag.id = deptid;
             ViewBag.personel = personel;
             return View(values);
         }

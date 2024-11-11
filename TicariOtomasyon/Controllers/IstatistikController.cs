@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using TicariOtomasyon.Models.Entities;
 
@@ -44,5 +45,33 @@ namespace TicariOtomasyon.Controllers
             ViewBag.d16= d16;
             return View();
         }
+        public IActionResult KolayTablolar()
+        {
+            return View();
+        }
+        public IActionResult Partial1()
+        {
+            var sorgu = (from x in context.Carilers
+                         group x by x.CariSehir into g
+                         select new SinifGrup
+                         {
+                             Sehir = g.Key,
+                             Sayi = g.Count()
+                         }).ToList();
+
+            return PartialView("Partial1", sorgu);
+        }
+        public IActionResult Partial2()
+        {
+            var sorgu2 = (from x in context.Personels
+                          group x by x.Departman.DepartmanAdi into g
+                          select new SinifGrup2
+                          {
+                              Departman = g.Key,
+                              Sayi = g.Count()
+                          }).ToList();
+            return PartialView("Partial2", sorgu2);
+        }
+
     }
 }
