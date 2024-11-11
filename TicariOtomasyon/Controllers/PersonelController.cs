@@ -45,21 +45,22 @@ namespace TicariOtomasyon.Controllers
         }
         public IActionResult PersonelGuncelle(Personel p)
         {
-            var pers = _context.Personels.FirstOrDefault(u =>u.Id == p.Id);
+            var pers = _context.Personels.Find(p.Id);
             var dep = _context.Departmans.Find(p.Departman.Id);
-            if (dep != null && pers != null)
-            {
+            //if (dep != null && pers != null)
+            //{
                 pers.Departman = dep;
                 pers.PersonelAd = p.PersonelAd;
                 pers.PersonelSoyad = p.PersonelSoyad;
                 pers.PersonelGorsel = p.PersonelGorsel;
                 _context.SaveChanges();
-            }
+            //}
             return RedirectToAction("Index");
         }
         public IActionResult PersonelListe()
         {
-            return View();
+            var values = _context.Personels.Include(u=>u.Departman).ToList();
+            return View(values);
         }
     }
 }
